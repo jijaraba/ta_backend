@@ -39,7 +39,7 @@ export class ProductController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get()
+  @Get(':id')
   @ApiOkResponse({
     description: 'Get Products.',
     type: ProductDTO,
@@ -49,8 +49,8 @@ export class ProductController {
     summary: 'Get Products.',
     description: 'Get Products.',
   })
-  getAll() {
-    return this.productService.getAll();
+  getAll(@Param('id') id: string) {
+    return this.productService.getAll(id);
   }
 
   @UseGuards(JwtAuthGuard)

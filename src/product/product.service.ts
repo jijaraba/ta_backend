@@ -23,8 +23,8 @@ export class ProductService {
   /**
    * Get All Products
    */
-  async getAll() {
-    return this.model.find().exec();
+  async getAll(id: string) {
+    return this.model.find({ owner: id }).exec();
   }
 
   /**
