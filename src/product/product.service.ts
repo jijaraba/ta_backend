@@ -31,7 +31,8 @@ export class ProductService {
    * Get Product
    */
   async getOne(id: string) {
-    return this.model.findOne({ id: id }).exec();
+    console.log(id);
+    return this.model.findOne({ _id: id }).exec();
   }
 
   /**
