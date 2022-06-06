@@ -4,9 +4,10 @@ import {
   Delete,
   Get,
   Param,
-  Post, Put,
-  UseGuards
-} from "@nestjs/common";
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductDTO } from './dtos/product.dto';
 import {
@@ -51,6 +52,21 @@ export class ProductController {
   })
   getAll(@Param('id') id: string) {
     return this.productService.getAll(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('/id/:id')
+  @ApiOkResponse({
+    description: 'Get Product.',
+    type: ProductDTO,
+  })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized.' })
+  @ApiOperation({
+    summary: 'Get Product.',
+    description: 'Get Product.',
+  })
+  getOne(@Param('id') id: string) {
+    return this.productService.getOne(id);
   }
 
   @UseGuards(JwtAuthGuard)

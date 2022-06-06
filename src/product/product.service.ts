@@ -28,6 +28,13 @@ export class ProductService {
   }
 
   /**
+   * Get Product
+   */
+  async getOne(id: string) {
+    return this.model.findOne({ id: id }).exec();
+  }
+
+  /**
    * Update Product
    * @param id
    * @param productDTO
